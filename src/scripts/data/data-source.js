@@ -15,15 +15,9 @@ class Weather {
         window.location.href = '/#/login';
       }
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.msg) {
-        swal({
-          text: error.response.data.msg,
-        });
-      } else {
-        swal({
-          text: 'Terjadi kesalahan saat melakukan registrasi',
-        });
-      }
+      swal({
+        text: error.response.data.msg,
+      });
     }
   }
 
@@ -193,11 +187,10 @@ class Weather {
       const response = await axios.post(API_ENDPOINT.NOTE, noteData);
       if (response.status === 200) {
         swal('Pencatatan Berhasil!', 'success');
-        window.location.href = '/#/pencatatan';
       }
     } catch (error) {
       swal({
-        text: 'Mohon isi semua data',
+        text: error.response.data.msg,
       });
     }
   }
