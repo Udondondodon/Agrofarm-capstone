@@ -15,9 +15,15 @@ class Weather {
         window.location.href = '/#/login';
       }
     } catch (error) {
-      swal({
-        text: 'Mohon isi semua data',
-      });
+      if (error.response && error.response.data && error.response.data.msg) {
+        swal({
+          text: error.response.data.msg,
+        });
+      } else {
+        swal({
+          text: 'Terjadi kesalahan saat melakukan registrasi',
+        });
+      }
     }
   }
 
